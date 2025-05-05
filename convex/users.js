@@ -7,12 +7,13 @@ export  const CreateNewUser=mutation({
         name: v.string(),
         email: v.string(),
         image: v.string(),
+        
 
     },
 
     handler:async(ctx,args) => {
         //if User already exists, return the user
-        const userData= await ctx.db.query("users").filter(q=>q.eq(q.field("email"),args.email)).collect()
+        const userData= await ctx.db.query("users").filter(q=>q.eq(q.field("email"),args.email)).collect();
 
         //if not, create a new user
         if(userData?.length==0){
@@ -20,8 +21,8 @@ export  const CreateNewUser=mutation({
                 name: args.name,
                 email: args.email,
                 image: args.image,
-                credits: "30",
-                paymentId: null
+                credits: 30
+                
             }
             const result= await ctx.db.insert("users",{
                 ...data,
@@ -33,5 +34,5 @@ export  const CreateNewUser=mutation({
             }
            
     }
-    return userData;
+    return userData[0];
 }})

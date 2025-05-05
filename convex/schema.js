@@ -7,7 +7,7 @@ export default defineSchema({
         name: v.string(),
         email: v.string(),
         image: v.string(),
-        credits: v.string(),
+        credits: v.number(),
         paymentId: v.optional(v.string()),
     })
 })

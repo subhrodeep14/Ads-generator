@@ -16,11 +16,13 @@ const WorkspaceProvider = ({children}) => {
 
     const CreateNewUser=async() =>{
         const result =await newUserMutation({
-            name:user?.firstName,
-            email:user?.primaryEmailAddress.emailAddress,
+            name:user?.fullName,
+            email:user?.primaryEmailAddress?.emailAddress,
             image:user?.imageUrl,
         });
         console.log(result)
+        console.log("hey");
+        
     }
   return (
     <div>{children}</div>
