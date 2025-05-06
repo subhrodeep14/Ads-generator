@@ -1,5 +1,6 @@
 "use client"
 
+import { UserDetailContext } from '@/context/UserDetailContext'
 import { api } from '@/convex/_generated/api'
 import { useUser } from '@clerk/nextjs'
 import { useMutation } from 'convex/react'
@@ -10,6 +11,7 @@ const WorkspaceProvider = ({children}) => {
     const newUserMutation =useMutation(api.users.CreateNewUser);
     const {user} =useUser();
 
+    const [userDetail, setUserDetail] = React.useState();
     useEffect(()=>{
         user && CreateNewUser()
     },[user])
@@ -22,10 +24,14 @@ const WorkspaceProvider = ({children}) => {
         });
         console.log(result)
         console.log("hey");
+        setUserDetail(result);
         
     }
   return (
+    <UserDetailContext.Provider value={{userDetail,setUserDetail}}>
+        {children}
     <div>{children}</div>
+    </UserDetailContext.Provider>
   )
 }
 
