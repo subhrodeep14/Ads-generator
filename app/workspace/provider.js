@@ -29,7 +29,7 @@ const WorkspaceProvider = ({children}) => {
     }
   return (
     <UserDetailContext.Provider value={{userDetail,setUserDetail}}>
-        {children}
+    
     <div>{children}</div>
     </UserDetailContext.Provider>
   )
